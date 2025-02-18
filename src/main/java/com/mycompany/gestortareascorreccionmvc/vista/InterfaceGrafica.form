@@ -15,12 +15,12 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="jmenuTarea">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Tarea"/>
+            <Property name="text" type="java.lang.String" value="Productos"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="menuItemListar">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Listar Tareas"/>
+                <Property name="text" type="java.lang.String" value="Listar Productos"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItemListarActionPerformed"/>
@@ -91,7 +91,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="200" max="-2" attributes="0"/>
               <Component id="rBtnCompletado" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="252" max="32767" attributes="0"/>
+              <EmptySpace pref="269" max="32767" attributes="0"/>
               <Component id="rBtnPendiente" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="170" max="-2" attributes="0"/>
           </Group>
@@ -141,7 +141,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Candara Light" size="30" style="3"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="GESTOR DE TAREAS"/>
+        <Property name="text" type="java.lang.String" value="GESTOR DE PRODUCTOS"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblNombreTarea">
@@ -149,7 +149,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="14" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Nombre de Tarea: "/>
+        <Property name="text" type="java.lang.String" value="Nombre de Producto: "/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblDescripcion">
@@ -157,7 +157,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="14" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Descripcion de Tarea: "/>
+        <Property name="text" type="java.lang.String" value="Precio de Producto: "/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblEstado">
@@ -165,12 +165,12 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial Black" size="14" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="ESTADO DE TAREA"/>
+        <Property name="text" type="java.lang.String" value="ESTADO DE PRODUCTO"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtNombreTarea">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Ingrese titulo de tarea"/>
+        <Property name="text" type="java.lang.String" value="Ingrese titulo de Producto"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNombreTareaActionPerformed"/>
@@ -212,7 +212,7 @@
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
           <ComponentRef name="buttonGroup1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Completado"/>
+        <Property name="text" type="java.lang.String" value="Disponible"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
       <Events>
@@ -224,7 +224,7 @@
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
           <ComponentRef name="buttonGroup1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Pendiente"/>
+        <Property name="text" type="java.lang.String" value="Agotado"/>
       </Properties>
     </Component>
   </SubComponents>

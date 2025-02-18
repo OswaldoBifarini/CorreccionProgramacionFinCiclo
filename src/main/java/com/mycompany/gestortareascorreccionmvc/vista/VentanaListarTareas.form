@@ -63,7 +63,7 @@
           <Font name="Old English Text MT" size="24" style="0"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="Lista de Tareas"/>
+        <Property name="text" type="java.lang.String" value="Lista de Productos"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">

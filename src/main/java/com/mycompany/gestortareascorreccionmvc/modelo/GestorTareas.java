@@ -8,49 +8,53 @@ package com.mycompany.gestortareascorreccionmvc.modelo;
  *
  * @author DELL
  */
+ import java.io.*;
 public class GestorTareas {
-
-    int tamanioVector = 10;
-    Tarea[] tareas = new Tarea[tamanioVector];
-    int cont = 0;
+    private final int tamanioVector = 10;
+    private Tarea[] tareas = new Tarea[tamanioVector];
+    private int cont = 0;
+    private final String archivo = "tareas.txt";
 
     public String agregarTarea(Tarea tarea) {
-        String mensaje = "Ingreso exitoso";
         if (cont < tareas.length) {
-
-            for (int i = 0; i < tareas.length; i++) {
-                if (tareas[i] == null) {
-                    //inicializar el objeto
-                    tareas[i] = new Tarea();
-                    tareas[i].setId(i);
-                    tareas[i].setTitulo(tarea.getTitulo());
-                    tareas[i].setDescripcion(tarea.getDescripcion());
-                    tareas[i].setEstado(tarea.getEstado());
-                    cont++;
-                    //con esto me aseguro que los datos solo se ingresen una vez en el vector. 
-                    return mensaje;
-                }
-            }
+            tarea.setId(cont);
+            tareas[cont] = tarea;
+            guardarEnArchivo(tarea);
+            cont++;
+            return "Tarea agregada exitosamente.";
         } else {
-            mensaje = "Ingreso no permitido, el vector esta lleno";
+            return "No se pueden agregar más tareas. El límite es " + tamanioVector + ".";
         }
-        return mensaje;
+    }
+
+    private void guardarEnArchivo(Tarea tarea) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(archivo, true))) {
+            bw.write(tarea.getId() + "," + tarea.getTitulo() + "," + tarea.getDescripcion() + "," + tarea.getEstado());
+            bw.newLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public Tarea[] listarTareas() {
+        return cargarDesdeArchivo();
+    }
 
-        Tarea[] auxTareas = new Tarea[tamanioVector];
-        for (int i = 0; i < cont; i++) {
-
-            if (tareas[i].getEstado()) {
-                auxTareas[i] = new Tarea();
-                auxTareas[i].setId(tareas[i].getId());
-                auxTareas[i].setTitulo(tareas[i].getTitulo());
-                auxTareas[i].setDescripcion(tareas[i].getDescripcion());
-                auxTareas[i].setEstado(tareas[i].getEstado());
-                System.out.println("Modelo-listarTarea" + auxTareas[i].getEstado());
+    private Tarea[] cargarDesdeArchivo() {
+        Tarea[] lista = new Tarea[tamanioVector];
+        int index = 0;
+        try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
+            String linea;
+            while ((linea = br.readLine()) != null && index < tamanioVector) {
+                String[] partes = linea.split(",");
+                lista[index] = new Tarea(Integer.parseInt(partes[0]), partes[1], partes[2], Boolean.parseBoolean(partes[3]));
+                index++;
             }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        return auxTareas;
+        return lista;
     }
 }
+    
+

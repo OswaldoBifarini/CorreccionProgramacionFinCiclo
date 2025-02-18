@@ -43,7 +43,7 @@ public class VentanaListarTareas extends javax.swing.JFrame {
 
         lblListaTareas.setFont(new java.awt.Font("Old English Text MT", 0, 24)); // NOI18N
         lblListaTareas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblListaTareas.setText("Lista de Tareas");
+        lblListaTareas.setText("Lista de Productos");
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -93,7 +93,7 @@ public class VentanaListarTareas extends javax.swing.JFrame {
         this.dispose();
         
     }//GEN-LAST:event_btnVolverActionPerformed
-    //q
+    
     /**
      * @param args the command line arguments
      */

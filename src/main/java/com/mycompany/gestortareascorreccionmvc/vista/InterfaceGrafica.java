@@ -21,10 +21,9 @@ public class InterfaceGrafica extends javax.swing.JFrame {
 
     public InterfaceGrafica() {
         initComponents();
-        this.controlador = new Controlador(this); 
-        this.ventanaListarTareas = new VentanaListarTareas(); 
+        this.ventanaListarTareas = new VentanaListarTareas();
+        this.controlador = new Controlador(this, ventanaListarTareas);
     }
-  
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -56,18 +55,18 @@ public class InterfaceGrafica extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         lblEncabezado.setFont(new java.awt.Font("Candara Light", 3, 30)); // NOI18N
-        lblEncabezado.setText("GESTOR DE TAREAS");
+        lblEncabezado.setText("GESTOR DE PRODUCTOS");
 
         lblNombreTarea.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblNombreTarea.setText("Nombre de Tarea: ");
+        lblNombreTarea.setText("Nombre de Producto: ");
 
         lblDescripcion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblDescripcion.setText("Descripcion de Tarea: ");
+        lblDescripcion.setText("Precio de Producto: ");
 
         lblEstado.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
-        lblEstado.setText("ESTADO DE TAREA");
+        lblEstado.setText("ESTADO DE PRODUCTO");
 
-        txtNombreTarea.setText("Ingrese titulo de tarea");
+        txtNombreTarea.setText("Ingrese titulo de Producto");
         txtNombreTarea.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNombreTareaActionPerformed(evt);
@@ -93,7 +92,7 @@ public class InterfaceGrafica extends javax.swing.JFrame {
         });
 
         buttonGroup1.add(rBtnCompletado);
-        rBtnCompletado.setText("Completado");
+        rBtnCompletado.setText("Disponible");
         rBtnCompletado.setToolTipText("");
         rBtnCompletado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -102,14 +101,14 @@ public class InterfaceGrafica extends javax.swing.JFrame {
         });
 
         buttonGroup1.add(rBtnPendiente);
-        rBtnPendiente.setText("Pendiente");
+        rBtnPendiente.setText("Agotado");
 
         jMenu2Salir.setText("Salir");
         jMenuBar1.add(jMenu2Salir);
 
-        jmenuTarea.setText("Tarea");
+        jmenuTarea.setText("Productos");
 
-        menuItemListar.setText("Listar Tareas");
+        menuItemListar.setText("Listar Productos");
         menuItemListar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuItemListarActionPerformed(evt);
@@ -152,7 +151,7 @@ public class InterfaceGrafica extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(200, 200, 200)
                 .addComponent(rBtnCompletado)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 252, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 269, Short.MAX_VALUE)
                 .addComponent(rBtnPendiente)
                 .addGap(170, 170, 170))
         );
@@ -190,22 +189,21 @@ public class InterfaceGrafica extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     //X
 
- public String getTitulo() {
-    return txtNombreTarea.getText();
-}
+    public String getTitulo() {
+        return txtNombreTarea.getText();
+    }
 
-public String getDescripcion() {
-    return txtAreaDescripcion.getText();
-}
+    public String getDescripcion() {
+        return txtAreaDescripcion.getText();
+    }
 
-public boolean getEstado() {
-    return rBtnCompletado.isSelected(); // Retorna true si está completado
-}
+    public boolean getEstado() {
+        return rBtnCompletado.isSelected(); // Retorna true si está completado
+    }
 
-public void error(String mensaje) {
-    JOptionPane.showMessageDialog(this, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
-}
-
+    public void error(String mensaje) {
+        JOptionPane.showMessageDialog(this, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
+    }
 
     //X
     private void txtNombreTareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreTareaActionPerformed
@@ -219,15 +217,14 @@ public void error(String mensaje) {
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
         this.controlador.agregarTarea();
+        this.controlador.listarTarea();
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void menuItemListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemListarActionPerformed
         // TODO add your handling code here:
+
         ventanaListarTareas.setVisible(true);
         controlador.listarTarea();
-        
-        
-        
     }//GEN-LAST:event_menuItemListarActionPerformed
 
     private void btnVaciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVaciarActionPerformed
@@ -235,10 +232,10 @@ public void error(String mensaje) {
         vaciar();
     }//GEN-LAST:event_btnVaciarActionPerformed
 
-    public void vaciar(){
-    
-    txtNombreTarea.setText("");
-    txtAreaDescripcion.setText("");
+    public void vaciar() {
+
+        txtNombreTarea.setText("");
+        txtAreaDescripcion.setText("");
     }
     /**
      * @param args the command line arguments

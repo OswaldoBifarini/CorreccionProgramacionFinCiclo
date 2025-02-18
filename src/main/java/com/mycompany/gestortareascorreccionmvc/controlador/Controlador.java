@@ -18,68 +18,54 @@ public class Controlador {
     private InterfaceGrafica interfaceGrafica;
     private GestorTareas gestorTarea;
     private VentanaListarTareas ventanaListarTareas;
-    private Tarea tarea;
 
-    public Controlador(InterfaceGrafica interfaceGrafica, VentanaListarTareas ventanaListarTareas, Tarea tarea) {
+    public Controlador(InterfaceGrafica interfaceGrafica, VentanaListarTareas ventanaListarTareas) {
         this.interfaceGrafica = interfaceGrafica;
         this.ventanaListarTareas = ventanaListarTareas;
-        this.tarea = tarea;
         this.gestorTarea = new GestorTareas();
     }
 
-    public Controlador(InterfaceGrafica aThis) {
-    }
-
     public void agregarTarea() {
-
         try {
-            if (this.interfaceGrafica != null) {
-                Tarea objTarea = new Tarea();
-                objTarea.setTitulo(this.interfaceGrafica.getTitulo());
-                objTarea.setDescripcion(this.interfaceGrafica.getDescripcion());
-                objTarea.setEstado(this.interfaceGrafica.getEstado());
-                String mensaje = gestorTarea.agregarTarea(objTarea);
-                interfaceGrafica.error(mensaje);
+            String titulo = interfaceGrafica.getTitulo();
+            String descripcion = interfaceGrafica.getDescripcion();
+            boolean estado = interfaceGrafica.getEstado();
 
-            } else {
-                interfaceGrafica.error("Completa los datos!");
+            if (titulo.isEmpty() || descripcion.isEmpty()) {
+                interfaceGrafica.error("Por favor, complete todos los campos.");
+                return;
             }
+
+            Tarea objTarea = new Tarea();
+            objTarea.setTitulo(titulo);
+            objTarea.setDescripcion(descripcion);
+            objTarea.setEstado(estado);
+
+            String mensaje = gestorTarea.agregarTarea(objTarea);
+            interfaceGrafica.error(mensaje); // Muestra el mensaje de éxito o error
+
+            // Actualiza la lista de productos
+            listarTarea();
         } catch (Exception e) {
-            interfaceGrafica.error("Error controlado:" + e);
+            interfaceGrafica.error("Error al agregar la tarea: " + e.getMessage());
         }
     }
 
     public void listarTarea() {
-
         try {
-            String mensaje = "";
-            Tarea[] tareas = new Tarea[5];
-            tareas = gestorTarea.listarTareas();
-            if (tareas != null) {
-                String lista = "";
-                for (int i = 0; i < tareas.length; i++) {
-                    if (tareas[i] != null) {
-                        lista = lista + "id:" + tareas[i].getId() + "\n"
-                                + "Titulo:" + tareas[i].getTitulo() + "\n"
-                                + "Descripcion:" + tareas[i].getDescripcion() + "\n"
-                                + "Estado:" + tareas[i].getEstado() + "\n";
-                    }
+            Tarea[] tareas = gestorTarea.listarTareas();
+            StringBuilder lista = new StringBuilder();
+            for (Tarea tarea : tareas) {
+                if (tarea != null) {
+                    lista.append("ID: ").append(tarea.getId()).append("\n")
+                         .append("Título: ").append(tarea.getTitulo()).append("\n")
+                         .append("Descripción: ").append(tarea.getDescripcion()).append("\n")
+                         .append("Estado: ").append(tarea.getEstado() ? "Disponible" : "Agotado").append("\n\n");
                 }
-                mensaje = lista;
-            } else {
-                mensaje = "No hay datos para mostrar";
             }
-            ventanaListarTareas.mostrarDatos(mensaje);
-            
-
+            ventanaListarTareas.mostrarDatos(lista.toString());
         } catch (Exception e) {
-            System.out.println("Error Controlador-listarTarea: " + e);
+            interfaceGrafica.error("Error al listar las tareas: " + e.getMessage());
         }
-    }
-
-    public void prueba(Tarea objTarea) {
-        System.out.println("Titulo: " + objTarea.getTitulo());
-        System.out.println("Descripcion: " + objTarea.getDescripcion());
-        System.out.println("Estado: " + objTarea.getEstado());
     }
 }

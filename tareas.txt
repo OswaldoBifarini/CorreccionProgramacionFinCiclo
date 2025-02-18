@@ -1,0 +1,2 @@
+0,ff,ff,true
+0,elefante,5000,true
