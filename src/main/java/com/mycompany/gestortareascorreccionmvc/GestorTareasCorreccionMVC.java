@@ -16,6 +16,7 @@ public class GestorTareasCorreccionMVC {
 
     public static void main(String[] args) {
         InterfaceGrafica objInterfaceGrafica = new InterfaceGrafica();
+        System.out.println("");
         objInterfaceGrafica.setVisible(true);
     }
 }

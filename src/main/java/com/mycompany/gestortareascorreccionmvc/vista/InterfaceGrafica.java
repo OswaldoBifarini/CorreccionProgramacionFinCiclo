@@ -24,6 +24,7 @@ public class InterfaceGrafica extends javax.swing.JFrame {
         this.controlador = new Controlador(this); 
         this.ventanaListarTareas = new VentanaListarTareas(); 
     }
+  
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -224,6 +225,8 @@ public void error(String mensaje) {
         // TODO add your handling code here:
         ventanaListarTareas.setVisible(true);
         controlador.listarTarea();
+        
+        
         
     }//GEN-LAST:event_menuItemListarActionPerformed
 
